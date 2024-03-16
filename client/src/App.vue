@@ -1,20 +1,13 @@
 <template>
-  <FirstBootView /> 
+  <Toaster />
+  <router-view />
+<!--  <FirstBootView />-->
 </template>
 
 
 <script setup lang="ts">
-import { reactive } from 'vue';
-import FirstBootView from './components/FirstBootView.vue'
+import FirstBootView from './views/FirstBootView.vue'
+import { Toaster } from '@/components/ui/toast'
 
-const formRef = reactive({
-    name: "",
-    password: ""
-})
-
-function onSubmit() {
-
-  console.log('submited')
-}
 </script>
 
