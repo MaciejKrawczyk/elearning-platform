@@ -4,6 +4,7 @@
   "private": true,
   "type": "module",
   "scripts": {
+    "mock:server": "json-server --watch mock-server/db.json",
     "dev": "vite",
     "build": "run-p type-check \"build-only {@}\" --",
     "preview": "vite preview",
@@ -16,6 +17,7 @@
     "format": "prettier --write src/"
   },
   "dependencies": {
+    "@formkit/auto-animate": "^0.8.1",
     "@vee-validate/zod": "^4.12.6",
     "@vueuse/core": "^10.9.0",
     "class-variance-authority": "^0.7.0",
