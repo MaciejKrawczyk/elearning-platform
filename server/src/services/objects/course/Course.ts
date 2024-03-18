@@ -1,3 +1,4 @@
+import { CourseSection } from "../courseSection/CourseSection";
 import { Student, Teacher } from "../user/User";
 
 class Course {
@@ -14,7 +15,10 @@ class Course {
 
     addSection(
         name: string
-    ) { }
+    ) {
+        const courseSection = new CourseSection()
+        return courseSection
+     }
 
     
 
