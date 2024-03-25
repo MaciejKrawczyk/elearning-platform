@@ -1,36 +1,38 @@
+
+
 class User {
-    constructor(
-        
-    ) {
+    constructor() {
         
     }
 
 }
 
-export class Student extends User {
-    constructor() {
-        super()
-    }
-}
 
-export class Teacher extends Student {
-    constructor() {
-        super()
-    }
 
-    public createCourse(name: string) { }
+// export class Student extends User {
+//     constructor() {
+//         super()
+//     }
+// }
 
-    public addStudentToCourse(studentId: number, courseId: number) { }
+// export class Teacher extends Student {
+//     constructor() {
+//         super()
+//     }
 
-    public createStudentGroupInCourse(courseId: number, studentIds: number[]) { }
+//     public createCourse(name: string) { }
+
+//     public addStudentToCourse(studentId: number, courseId: number) { }
+
+//     public createStudentGroupInCourse(courseId: number, studentIds: number[]) { }
 
     
-}
+// }
 
-export class Admin extends User {
-    constructor() {
-        super()  
-    }
+// export class Admin extends User {
+//     constructor() {
+//         super()  
+//     }
 
-    public createTeacher() { }
-}
+//     public createTeacher() { }
+// }

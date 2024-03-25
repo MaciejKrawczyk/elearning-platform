@@ -7,7 +7,14 @@
     "dev": "nodemon",
     "start": "npm run build && node build/main.js",
     "build": "tsc --build",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "migrate:dev": "npx dotenv -e ../.env -- prisma migrate dev --schema=./src/models/schema.prisma",
+    "db:push": "npx dotenv -e ../.env -- prisma db push",
+    "migrate:reset": "npx dotenv -e ../.env -- prisma migrate reset --schema=./src/models/schema.prisma",
+    "db:seed": "npx dotenv -e ../.env -- prisma db seed",
+    "prisma:generate": "npx dotenv -e ../.env -- prisma generate --schema=./src/models/schema.prisma",
+    "prisma:studio": "npx dotenv -e ../.env -- prisma studio --schema=./src/models/schema.prisma",
+    "production:build": "npx dotenv -e ../.env -- npx prisma generate --schema=./src/models/schema.prisma && npx prisma migrate deploy && npm run start"
   },
   "keywords": [],
   "author": "",

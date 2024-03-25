@@ -1,5 +1,6 @@
 import express, { Application, Request, Response } from 'express';
 import authRouter from './routers/auth.router';
+import userRouter from './routers/user.router';
 import cors from 'cors'
 import bodyParser from 'body-parser';
 import {authenticate, authorize} from './middleware/auth.middleware';
@@ -10,6 +11,7 @@ const port: number = 3000;
 app.use(cors())
 app.use(bodyParser.json())
 app.use(authRouter)
+app.use(userRouter)
 
 app.get('/', (req, res) => {
     res.send("hello world")
