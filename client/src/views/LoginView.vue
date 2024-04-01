@@ -16,8 +16,8 @@
                 </div>
               </CarouselItem>
             </CarouselContent>
-<!--            <CarouselPrevious />-->
-<!--            <CarouselNext />-->
+            <CarouselPrevious />
+            <CarouselNext />
           </Carousel>
           <div class="py-2 text-sm text-muted-foreground flex justify-center items-center">
             <div
@@ -52,9 +52,6 @@
               <FormControl>
                 <Input type="password" placeholder="" v-bind="componentField" />
               </FormControl>
-              <!--          <FormDescription>-->
-              <!--            This is your public display name.-->
-              <!--          </FormDescription>-->
               <FormMessage />
             </FormItem>
           </FormField>
@@ -78,7 +75,6 @@ import { ref } from 'vue'
 import { Button } from '@/components/ui/button'
 import {
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -86,7 +82,6 @@ import {
 } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
 import { sleep } from '@/lib/utils'
-import ky from 'ky'
 import { Loader2 } from 'lucide-vue-next'
 import * as z from 'zod'
 import { toTypedSchema } from '@vee-validate/zod'
@@ -104,32 +99,32 @@ import {
   CarouselPrevious
 } from '@/components/ui/carousel'
 import { watchOnce } from '@vueuse/core'
+import api from '@/../mock-server/index'
 
 
-const api = ref<CarouselApi>()
+const api1 = ref<CarouselApi>()
 const totalCount = ref(0)
 const current = ref(0)
 
 function setApi(val: CarouselApi) {
-  api.value = val
+  api1.value = val
 }
 
-watchOnce(api, (api) => {
-  if (!api)
+watchOnce(api1, (api1) => {
+  if (!api1)
     return
 
-  totalCount.value = api.scrollSnapList().length
-  current.value = api.selectedScrollSnap() + 1
+  totalCount.value = api1.scrollSnapList().length
+  current.value = api1.selectedScrollSnap() + 1
 
-  api.on('select', () => {
-    current.value = api.selectedScrollSnap() + 1
+  api1.on('select', () => {
+    current.value = api1.selectedScrollSnap() + 1
   })
 })
 
 const formSchema = toTypedSchema(z.object({
   login: z.string().min(3).max(50),
   password: z.string().min(3),
-  password2: z.string().min(3)
 }))
 
 const { toast } = useToast()
@@ -142,7 +137,7 @@ const onSubmit = handleSubmit(async (values) => {
   const user = { ...values, role: 'editor' }
 
   await sleep(500)
-  const response = await ky.post('http://localhost:3000/user', { json: user }).json()
+  const response = await api.post('/', { json: user })
   console.log(response)
   toast({
     title: 'Success!',
